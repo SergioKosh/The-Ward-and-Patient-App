@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalApp
 {
-    internal class Patient
+    public class Patient
     {
         public string Name { get; set; }
         public string BloodType { get; set; }

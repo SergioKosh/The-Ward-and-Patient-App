@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace HospitalApp
 {
-    internal class Ward
+    public class Ward
     {
         public string WardName { get; set; }
 
         public int Capacity { get; set; }
 
         public List<Patient> Patients { get; set; } = new List<Patient>();
+
+        //constructor 
+        public Ward() { }
+        public Ward(string name, int capacity) {
+            WardName = name;
+            Capacity = capacity;
+            Patients = new List<Patient>();
+        }
 
         public override string ToString()
         {

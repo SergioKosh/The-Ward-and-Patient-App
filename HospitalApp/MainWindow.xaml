@@ -35,7 +35,7 @@
                        Text="Patient List" FontSize="30" TextAlignment="Center"/>
 
             <!-- ListBoxes -->
-            <ListBox x:Name="lbxWardList" ItemsSource="{Binding Wards}" DisplayMemberPath="WardName" Grid.Row="1" Grid.Column="0" />
+            <ListBox x:Name="lbxWardList" ItemsSource="{Binding Wards}" DisplayMemberPath="WardName" SelectionChanged="lbxWardList_SelectionChanged" Grid.Row="1" Grid.Column="0" />
             <ListBox x:Name="lbxPatientList" Grid.Row="1" Grid.Column="1" />
 
             <!-- Ward Expander -->
@@ -65,8 +65,7 @@
                             Value="1"
                             ValueChanged="Slider_ValueChanged"
                             Margin="0,10,0,0"/>
-                    <TextBlock x:Name="tbxSliderValue"  
-                            Text="1"  Margin="0,10,0,0"/>
+                        <TextBlock x:Name="tbxSliderValue"  Margin="0,10,0,0"/>
                     </DockPanel>
 
                     <Button x:Name="btnAddWard" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
@@ -89,22 +88,22 @@
                     </Grid.RowDefinitions>
 
                     <Label x:Name="lblNamePatient" Grid.Column="0" Grid.Row="0" Content="Name"/>
-                    <TextBlock x:Name="tblNamePatient" Grid.Column="1" Grid.Row="0" 
-                               Text="_______________________________" Margin="0,10,0,0"/>
+                    <TextBox x:Name="tbxNamePatient" Grid.Column="1" Grid.Row="0" 
+                               Text="Enter Patient's name" Margin="0,10,0,0"/>
 
                     <Label x:Name="lblBloodType" Grid.Column="0" Grid.Row="1" Content="Blood Type"/>
                     <DockPanel Grid.Column="1" Grid.Row="1">
-                        <RadioButton x:Name="rbA" Content="A" Margin="5"/>
-                        <RadioButton x:Name="rbB" Content="B" Margin="5"/>
-                        <RadioButton x:Name="rbAB" Content="AB" Margin="5"/>
-                        <RadioButton x:Name="rbO" Content="O" Margin="5"/>
+                        <RadioButton x:Name="rbA" GroupName="BloodType" Content="A" Margin="5"/>
+                        <RadioButton x:Name="rbB" GroupName="BloodType"  Content="B" Margin="5"/>
+                        <RadioButton x:Name="rbAB" GroupName="BloodType"  Content="AB" Margin="5"/>
+                        <RadioButton x:Name="rbO" GroupName="BloodType"  Content="O" Margin="5"/>
                     </DockPanel>
 
                     <Label x:Name="lblDOB" Grid.Column="0" Grid.Row="2" Content="DOB"/>
                     <DatePicker x:Name="dpDOB" Grid.Column="1" Grid.Row="2"/>
 
                     <Button x:Name="btnAddPatient" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
-                            Margin="5" Background="Green" Content="Add Patient" FontSize="18"/>
+                            Margin="5" Background="Green" Content="Add Patient" FontSize="18" Click="btnAddPatient_Click"/>
                 </Grid>
             </Expander>
         </Grid>

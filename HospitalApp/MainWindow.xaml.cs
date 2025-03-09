@@ -128,5 +128,37 @@ namespace HospitalApp
             lbxPatientList.ItemsSource = selectedWard.Patients;
 
         }
+
+
+        //display details of a patient
+        private void lbxPatientList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbxPatientList.SelectedItem is Patient selectedPatient)
+            {
+                tbkDetailName.Text = selectedPatient.Name;
+
+                //display bloddType
+                if (selectedPatient.BloodType == "A")
+                {
+                    imgDetails.Source = new BitmapImage(new Uri("images/a.png", UriKind.Relative));
+                }
+                if (selectedPatient.BloodType == "B")
+                {
+                    imgDetails.Source = new BitmapImage(new Uri("images/b.png", UriKind.Relative));
+                }
+                if (selectedPatient.BloodType == "AB")
+                {
+                    imgDetails.Source = new BitmapImage(new Uri("images/ab.png", UriKind.Relative));
+                }
+                if (selectedPatient.BloodType == "O")
+                {
+                    imgDetails.Source = new BitmapImage(new Uri("images/o.png", UriKind.Relative));
+                }
+            }
+            else
+            {
+                tbkDetailName.Text = null; // Clear list if no ward is selected
+            }
+        }
     }
 }

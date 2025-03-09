@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HospitalApp"
         mc:Ignorable="d"
         Title="Hospital Management" Height="450" Width="800">
-<!--Main grid-->
+    <!--Main grid-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>
@@ -35,8 +35,8 @@
                        Text="Patient List" FontSize="30" TextAlignment="Center"/>
 
             <!-- ListBoxes -->
-            <ListBox x:Name="lbxWardList" ItemsSource="{Binding Wards}" DisplayMemberPath="WardName" SelectionChanged="lbxWardList_SelectionChanged" Grid.Row="1" Grid.Column="0" />
-            <ListBox x:Name="lbxPatientList" Grid.Row="1" Grid.Column="1" />
+            <ListBox x:Name="lbxWardList" ItemsSource="{Binding Wards}" DisplayMemberPath="WardName" SelectionChanged="lbxWardList_SelectionChanged" Grid.Row="1" Grid.Column="0"  Margin="5"/>
+            <ListBox x:Name="lbxPatientList" SelectionChanged="lbxPatientList_SelectionChanged" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
             <!-- Ward Expander -->
             <Expander Grid.Row="2" Grid.Column="0" Header="Ward Details">
@@ -58,7 +58,7 @@
 
                     <Label x:Name="lblCapacityWard" Grid.Column="0" Grid.Row="1" 
                            Content="Capacity" FontSize="18"/>
-                    
+
                     <DockPanel Grid.Column="1" Grid.Row="1" >
                         <Slider x:Name="sliderWard"  
                             Width="150" SmallChange="1" Minimum="1" Maximum="10"
@@ -113,15 +113,19 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
-                    <RowDefinition Height="70*"/>
-                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock x:Name="tbkDetails" Grid.Row="0" 
                            Margin="5" Background="Green" Height="50" 
                            Text="Details" FontSize="30" TextAlignment="Center"/>
 
-                <Image Grid.Row="1"/>
+                <StackPanel Grid.Row="1" Margin="10">
+                    <TextBlock x:Name="tbkDetailName"  Margin="10" FontSize="24"/>
+
+                    <Image x:Name="imgDetails"  Height="150" />
+                </StackPanel>
 
                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
                     <Button Content="Load" Background="Green" Margin="5" 

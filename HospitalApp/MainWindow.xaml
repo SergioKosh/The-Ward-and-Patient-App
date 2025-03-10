@@ -35,7 +35,7 @@
                        Text="Patient List" FontSize="30" TextAlignment="Center"/>
 
             <!-- ListBoxes -->
-            <ListBox x:Name="lbxWardList" ItemsSource="{Binding Wards}" DisplayMemberPath="WardName" SelectionChanged="lbxWardList_SelectionChanged" Grid.Row="1" Grid.Column="0"  Margin="5"/>
+            <ListBox x:Name="lbxWardList" SelectionChanged="lbxWardList_SelectionChanged" Grid.Row="1" Grid.Column="0"  Margin="5"/>
             <ListBox x:Name="lbxPatientList" SelectionChanged="lbxPatientList_SelectionChanged" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
             <!-- Ward Expander -->
@@ -53,7 +53,7 @@
 
                     <Label x:Name="lblNameWard" Grid.Column="0" Grid.Row="0" 
                            Content="Name" FontSize="18"/>
-                    <TextBox x:Name="tbxNameWard" Grid.Column="1" Grid.Row="0" 
+                    <TextBox x:Name="tbxNameWard" GotFocus="tbxNameWard_GotFocus" Grid.Column="1" Grid.Row="0" 
                                Text="Enter name of the Ward Here" Margin="0,10,0,0"/>
 
                     <Label x:Name="lblCapacityWard" Grid.Column="0" Grid.Row="1" 
@@ -88,7 +88,7 @@
                     </Grid.RowDefinitions>
 
                     <Label x:Name="lblNamePatient" Grid.Column="0" Grid.Row="0" Content="Name"/>
-                    <TextBox x:Name="tbxNamePatient" Grid.Column="1" Grid.Row="0" 
+                    <TextBox x:Name="tbxNamePatient" GotFocus="tbxNamePatient_GotFocus" Grid.Column="1" Grid.Row="0" 
                                Text="Enter Patient's name" Margin="0,10,0,0"/>
 
                     <Label x:Name="lblBloodType" Grid.Column="0" Grid.Row="1" Content="Blood Type"/>

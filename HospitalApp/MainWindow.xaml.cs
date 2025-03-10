@@ -30,14 +30,13 @@ namespace HospitalApp
         {
             InitializeComponent();
             DataContext = this;
+            isLoaded = true;
         }
 
         //startup code
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            
-            isLoaded = true;
+
       
         }
 
@@ -56,9 +55,11 @@ namespace HospitalApp
         //slider, but stil not working
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            
+
             if (!isLoaded) return;
 
-
+            double numb = sliderWard.Value;
             tbxSliderValue.Text = string.Format("{0:F0}", sliderWard.Value);
 
         }
@@ -88,9 +89,11 @@ namespace HospitalApp
             }
 
             string wardName = tbxNameWard.Text;
-            int capacity = Convert.ToInt16(sliderWard.Value);
+            int capacity = Convert.ToInt32(sliderWard.Value);
+           
             Wards.Add(new HospitalApp.Ward(wardName, capacity));
-            MessageBox.Show("The ward was added successfully!", "Success", MessageBoxButton.OK);
+            MessageBox.Show($"The ward was added successfully! " +
+                $"Ward's name: {wardName}  Capacity: {capacity}", "Success", MessageBoxButton.OK);
             
             //refresh listbox
             lbxWardList.ItemsSource = null;
@@ -159,6 +162,16 @@ namespace HospitalApp
             {
                 tbkDetailName.Text = null; // Clear list if no ward is selected
             }
+        }
+
+        private void tbxNameWard_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbxNameWard.Clear();
+        }
+
+        private void tbxNamePatient_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbxNamePatient.Clear();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace HospitalApp
 
         public override string ToString()
         {
-            return $"{WardName} (Limit: {Capacity - Patients.Count})";
+            return $"{WardName} (Limit: {Capacity})";
         }
     }
 }

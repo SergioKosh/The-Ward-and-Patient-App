@@ -9,26 +9,28 @@ namespace HospitalApp
     public class Patient
     {
         public string Name { get; set; }
-        public string BloodType { get; set; }
+        public BloodType Blood { get; set; }
 
         public DateTime Birthday { get; set; }
 
         public int YearsOld { get; set; }
 
         //constructor 
-        public Patient(string name, string bloodType, DateTime birthday)
+        public Patient(string name, BloodType blood, DateTime birthday)
         {
             DateTime today = DateTime.Today;
 
             Name = name;
-            BloodType = bloodType;
+            Blood = blood;
             Birthday = birthday;
             YearsOld = today.Year - birthday.Year;
         }
 
+       
+
         public override string ToString()
         {
-            return $"{Name} ({YearsOld}) Type:{BloodType}";
+            return $"{Name} ({YearsOld}) Type:{Blood}";
         }
 
     }

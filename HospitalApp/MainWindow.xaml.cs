@@ -65,17 +65,18 @@ namespace HospitalApp
         }
 
         //checking which radio buttom selected 
-        private string GetSelectedBloodType()
+        private BloodType GetSelectedBloodType()
         {
-            if (rbA.IsChecked == true) return "A";
-            if (rbB.IsChecked == true) return "B";
-            if (rbAB.IsChecked == true) return "AB";
-            if (rbO.IsChecked == true) return "O";
+            if (rbA.IsChecked == true) return BloodType.A;
+            if (rbB.IsChecked == true) return BloodType.B;
+            if (rbAB.IsChecked == true) return BloodType.AB;
+            if (rbO.IsChecked == true) return BloodType.O;
 
-            MessageBox.Show("Please select a blood type!", "Selection Error", MessageBoxButton.OK, 
+            MessageBox.Show("Please select a blood type!", "Selection Error", MessageBoxButton.OK,
             MessageBoxImage.Warning);
-            
-            return string.Empty;
+
+
+            return BloodType.NotSelected;
         }
 
         private void btnAddWard_Click(object sender, RoutedEventArgs e)
@@ -98,6 +99,9 @@ namespace HospitalApp
             //refresh listbox
             lbxWardList.ItemsSource = null;
             lbxWardList.ItemsSource = Wards;
+            
+            //WardsCount
+            tblWardList.Text = $"Wards: {Wards.Count}";
 
         }
 
@@ -118,11 +122,11 @@ namespace HospitalApp
                 return;
             }
 
-            string bloodType = GetSelectedBloodType();
+            BloodType blood = GetSelectedBloodType();
             string name = tbxNamePatient.Text;
             DateTime birthday = Convert.ToDateTime(dpDOB.Text);
                 
-            Patient pat = new Patient(name, bloodType, birthday);
+            Patient pat = new Patient(name, blood, birthday);
             selectedWard.Patients.Add(pat);
             MessageBox.Show($"Patient {name} has been added to {selectedWard.WardName}.", "Success", MessageBoxButton.OK);
             
@@ -141,19 +145,19 @@ namespace HospitalApp
                 tbkDetailName.Text = selectedPatient.Name;
 
                 //display bloddType
-                if (selectedPatient.BloodType == "A")
+                if (selectedPatient.Blood == BloodType.A)
                 {
                     imgDetails.Source = new BitmapImage(new Uri("images/a.png", UriKind.Relative));
                 }
-                if (selectedPatient.BloodType == "B")
+                if (selectedPatient.Blood == BloodType.B)
                 {
                     imgDetails.Source = new BitmapImage(new Uri("images/b.png", UriKind.Relative));
                 }
-                if (selectedPatient.BloodType == "AB")
+                if (selectedPatient.Blood == BloodType.AB)
                 {
                     imgDetails.Source = new BitmapImage(new Uri("images/ab.png", UriKind.Relative));
                 }
-                if (selectedPatient.BloodType == "O")
+                if (selectedPatient.Blood == BloodType.O)
                 {
                     imgDetails.Source = new BitmapImage(new Uri("images/o.png", UriKind.Relative));
                 }

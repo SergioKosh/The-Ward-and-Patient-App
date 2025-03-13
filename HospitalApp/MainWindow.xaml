@@ -128,11 +128,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                    <Button Content="Load" Background="Green" Margin="5" 
-                            VerticalAlignment="Bottom" FontSize="18" />
+                    <Button x:Name="btnLoad" Content="Load" Background="Green" Margin="5" 
+                            VerticalAlignment="Bottom" FontSize="18" Click="btnLoad_Click" />
 
-                    <Button Content="Save" Background="Green" Margin="5" 
-                            VerticalAlignment="Bottom" FontSize="18"/>
+                    <Button x:Name="btnSave" Content="Save" Background="Green" Margin="5" 
+                            VerticalAlignment="Bottom" FontSize="18" Click="btnSave_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

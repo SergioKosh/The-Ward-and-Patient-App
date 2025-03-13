@@ -16,6 +16,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Newtonsoft.Json;
+using System.IO;
+using System.Xml.Linq;
+
 namespace HospitalApp
 {
     /// <summary>
@@ -25,7 +29,7 @@ namespace HospitalApp
     {
         private bool isLoaded = false;
         public ObservableCollection<HospitalApp.Ward> Wards { get; set; } = new ObservableCollection<Ward>();
-        public ObservableCollection<HospitalApp.Patient> patients = new ObservableCollection<Patient>();
+        public ObservableCollection<HospitalApp.Patient> Patients = new ObservableCollection<Patient>();
         public MainWindow()
         {
             InitializeComponent();
@@ -176,6 +180,61 @@ namespace HospitalApp
         private void tbxNamePatient_GotFocus(object sender, RoutedEventArgs e)
         {
             tbxNamePatient.Clear();
+        }
+
+        //save Ward and Pation information, json
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //get string of objects - JSON formatted 
+            string jsonWards = JsonConvert.SerializeObject(Wards, Formatting.Indented);
+            string jsonPatients = JsonConvert.SerializeObject(Patients, Formatting.Indented);
+
+            //write that to file
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\user\Downloads\Wards.json"))
+            {
+                sw.Write(jsonWards);
+            }
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\user\Downloads\Patients.json"))
+            {
+                sw.Write(jsonPatients);
+            }
+            MessageBox.Show("Wards and Patients saved in Downloads", "Success", MessageBoxButton.OK);
+        }
+
+
+        //loads json file
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            //connect to a file
+            using (StreamReader sr = new StreamReader(@"C:\Users\user\Downloads\Wards.json"))
+            {
+                //read text
+                string jsonWards = sr.ReadToEnd();
+
+                //convert from json to obj
+                Wards = JsonConvert.DeserializeObject<ObservableCollection<HospitalApp.Ward>>(jsonWards);
+
+                //refresh the display
+                lbxWardList.ItemsSource = null;
+                lbxWardList.ItemsSource = Wards;
+
+            }
+            using (StreamReader sr = new StreamReader(@"C:\Users\user\Downloads\Wards.json"))
+            {
+                //read text
+                string jsonPatients = sr.ReadToEnd();
+
+                //convert from json to obj
+                Patients = JsonConvert.DeserializeObject<ObservableCollection<HospitalApp.Patient>> (jsonPatients);
+
+                //refresh the display
+                lbxPatientList.ItemsSource = null;
+                lbxPatientList.ItemsSource = Patients;
+
+                MessageBox.Show("Wards and Patients were loaded", "Success", MessageBoxButton.OK);
+
+            }
+
         }
     }
 }
